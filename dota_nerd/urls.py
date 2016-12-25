@@ -16,6 +16,7 @@ urlpatterns = patterns('',
     url(r'^users/', include('users.urls')),
     url(r'^admin/', include(admin.site.urls)),
     #url(r'^loginza/', include('loginza.urls')),
+    url(r'^o/', include('oauth2_provider.urls', namespace='oauth2_provider')),
 
 )
 

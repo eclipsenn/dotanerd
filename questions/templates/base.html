@@ -31,7 +31,7 @@
                 {% endblock %}
                 {% block login %}
                     {% if user.is_authenticated %}
-                        <li><a href="/users/login"> Profile </a></li>
+                        <li><a href="/users/register/complete"> Profile </a></li>
                     {% else %}
 				        <li><a href="/users/login"> Log in</a></li>
                     {% endif %}
@@ -123,7 +123,7 @@
                 <h1>Знаешь все о Доте? </h1>
           	  <img src="{%static 'images/templatemo_image_01.jpg' %}" alt="image"/>
 
-              <p>{% block autorized %}1. Авторизуйся{% endblock %}</p>
+              <p>{% block autorized %}1. <a href="#"> Авторизуйся </a> или <a href="#"> Зарегистрируйся </a> {% endblock %}</p>
 
               <p>2. Нажми на <a href="#">Старт</a></p>
 			  <p>3. Покажи, насколько ты крут</p>

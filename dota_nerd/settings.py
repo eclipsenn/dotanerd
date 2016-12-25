@@ -29,7 +29,7 @@ TEMPLATE_DEBUG = True
 
 AUTHENTICATION_BACKENDS = (
     'django.contrib.auth.backends.ModelBackend',
-    'loginza.authentication.LoginzaBackend',
+    # 'loginza.authentication.LoginzaBackend',
 )
 
 TEMPLATE_CONTEXT_PROCESSORS += (
@@ -58,6 +58,8 @@ INSTALLED_APPS = (
     'django.contrib.sites',
     'questions',
     # 'loginza',
+    'oauth2_provider',
+    'corsheaders',
 )
 
 SITE_ID = 1
@@ -70,7 +72,10 @@ MIDDLEWARE_CLASSES = (
     'django.contrib.auth.middleware.SessionAuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
 )
+
+CORS_ORIGIN_ALLOW_ALL = True
 
 ROOT_URLCONF = 'dota_nerd.urls'
 

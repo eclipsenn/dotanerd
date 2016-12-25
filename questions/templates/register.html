@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+{% block login %}
+    <li><a href="/login"  rel='tablogin' class="selected">Loggin' in</a></li>
+{% endblock %}
+
+{% block title %}Register{% endblock %}
+
+{% block section_01_left %}
+<div class="section_01_left">
+    {% if user.is_authenticated %}
+    <h1>Профиль : </h1>
+  <img src="{%static 'images/templatemo_image_01.jpg' %}" alt="image"/>
+    {% else  %}
+    <h1>Ты кто?</h1>
+    <img src="{%static 'images/question3.jpg' %}" alt="image"/>
+    <p>Авторизуйся, используя аккаунт в социальной сети.</p>
+    <p></p><form action="/users/register/" method="post">{% csrf_token %}
+    {{form.as_p}}
+  <input type="submit" value="Register" />
+  </form>
+    {% endif %}
+
+</div>
+{% endblock %}

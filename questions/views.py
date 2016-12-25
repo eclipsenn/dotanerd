@@ -11,7 +11,7 @@ from django.http import Http404, HttpResponseForbidden
 from django.shortcuts import get_object_or_404, render, render_to_response
 from forms import *
 from random import random
-from users.views import loginza_login_required
+# from users.views import loginza_login_required
 
 
 def index(request):
