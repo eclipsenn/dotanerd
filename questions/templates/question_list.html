@@ -1,0 +1,19 @@
+﻿{% extends "base.html" %}
+
+{% block questions %}
+    <li><a href="/questions" class="selected">DotaTimes</a></li>
+{% endblock %}
+
+{% block section_01_right %}
+    <div class="section_01_right">
+        <h1>Recent questions:</h1>
+        <ul>
+            {% for question in object_list %}
+                <div class="col-md-4">
+                    <h3>{{ question.text }} </h3>
+                    <p><a class="btn btn-default" href="/questions/{{question.id}}" role="button">View details &raquo;</a></p>
+                </div>
+            {% endfor %}
+        </ul>
+    </div>
+{% endblock %}

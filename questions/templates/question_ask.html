@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+
+{% block dotanerd %}
+  <li><a href="/dotanerd" class="selected" rel="choose_answer" >DotaNerd</a></li>
+{% endblock %}
+
+{% block section_01_left %}
+
+<h2>Your question:</h2>
+	<div class="col-md-4">
+      <h3>{{ question.text }} </h3>
+        {% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
+         <form action="{%url 'questions.views.ask_question_view' question.id %}" method='post'>
+        {% csrf_token %}
+            {% for radio in form.answer %}
+                <div class="radio_choice">
+                {{ radio }}
+                </div>
+            {% endfor %}
+<input type="submit" value="you sure?" />
+        </form>
+    </div>
+{% endblock %}
+

@@ -1,0 +1,156 @@
+{% load staticfiles %}
+{% load loginza_widget %}
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>VOIP Company, css template, free web design layout</title>
+<meta name="keywords" content="" />
+<meta name="description" content="" />
+<link href="{% static 'templatemo_style.css' %}" rel="stylesheet" type="text/css" />
+<link rel="stylesheet" type="text/css" href="{% static 'tabcontent.css' %}" />
+<script type="text/javascript" src="{% static 'tabcontent.js' %}">
+/***********************************************
+* Tab Content script v2.2- © Dynamic Drive DHTML code library (www.dynamicdrive.com)
+* This notice MUST stay intact for legal use
+* Visit Dynamic Drive at http://www.dynamicdrive.com/ for full source code
+***********************************************/
+</script>
+
+</head>
+<body>
+<div id="templatemo_wrapper">
+<div id="templatemo_container">
+	<!--  Free CSS Template is provided by www.TemplateMo.com  -->
+    <div id="templatemo_menu">
+        <div id="pettabs" class="indentmenu">
+            <ul>
+                {% block home %}
+                  <li><a href="/">Home</a></li>
+                {% endblock %}
+                {% block login %}
+                    {% if user.is_authenticated %}
+                        <li><a href="/users/login"> Profile </a></li>
+                    {% else %}
+				        <li><a href="/users/login"> Log in</a></li>
+                    {% endif %}
+                {% endblock %}
+                {% block dotanerd %}
+                  <li><a href="/dotanerd">DotaNerd</a></li>
+                {% endblock %}
+                {% block questions %}
+                  <li><a href="/questions">DotaTimes</a></li>
+                {% endblock %}
+                {% block feedback %}
+                  <li><a href="#" >Feedback</a></li>
+                {% endblock %}
+                {% block contacts %}
+                  <li><a href="#" style="border-right: none;">Contacts</a></li>
+                {% endblock %}
+            </ul>
+        </div>
+        <div class="tabcontentstyle">
+        
+            <div id="tab1" class="tabcontent">
+            	<ul>
+                  <li class="tableft">Dota</li>
+                  <li class="tabright">Nerd</li>
+                </ul>
+            </div>
+            
+            <div id="tab2" class="tabcontent">
+            </div>
+
+
+           <div id="tablogin" class="logintabcontent" >
+                	<ul>
+                    {% loginza_iframe providers_set="vkontakte,facebook" lang="en" height="200px"%}
+                </ul>
+            </div>
+
+            <div id="tablogout" class="logintabcontent" >
+                	<ul>
+				        <li><a href="/users/logout" >Log out</a></li>
+                </ul>
+            </div>
+
+           <div id="tabcompletereq" class="logintabcontent" >
+                <form method="POST">
+                    {% csrf_token %}
+                    {{ form.as_p }}
+                    <input type="submit" value="confirm" />
+                </form>
+           </div>
+
+
+            <div id="tab4" class="tabcontent">
+            	<ul>
+                  <li><a href="#">Link 1</a></li>
+                  <li><a href="#">Link 2</a></li>
+                </ul>
+            </div>
+            
+            <div id="tab5" class="tabcontent">
+            	Something you might want to know about us.
+            </div>
+            
+            <div id="tab6" class="tabcontent">
+            	Don't be hesitated to contact us if you have something to say.
+            </div>
+        
+        </div>
+<script type="text/javascript">
+        
+        var mypets=new ddtabcontent("pettabs")
+        mypets.setpersist(true)
+        mypets.setselectedClassTarget("link")
+        mypets.init(false)
+
+</script>
+
+    </div> <!-- end of mneu -->
+   
+    <div id="templatemo_banner">
+    </div>
+    
+	<div id="templatemo_content">
+    	<div id="content_top"></div>
+        
+        <div class="templatemo_content_section_01">
+            {% block section_01_left %}
+        	<div class="section_01_left">
+                <h1>Знаешь все о Доте? </h1>
+          	  <img src="{%static 'images/templatemo_image_01.jpg' %}" alt="image"/>
+
+              <p>{% block autorized %}1. Авторизуйся{% endblock %}</p>
+
+              <p>2. Нажми на <a href="#">Старт</a></p>
+			  <p>3. Покажи, насколько ты крут</p>
+			</div>
+            {% endblock %}
+
+            {% block section_01_right %}
+            {% endblock %}
+
+            <div class="cleaner">&nbsp;</div>
+		</div>
+    </div>
+       
+      
+    <div id="templatemo_footer">
+    
+	       <p><a href="#">Home</a> | <a href="#">Products</a> | <a href="#">Services</a> | <a href="#">FAQs</a> | <a href="#">Contact Us</a>
+           </p>
+        	<p>Copyright © 2024 <a href="#"><strong>Your Company Name</strong></a> 
+            <!-- Credit: www.templatemo.com --></p>
+	</div> <!-- end of footer -->
+	<!--  Free CSS Templates from www.TemplateMo.com  -->
+</div>
+</div>
+<!-- 
+Voip Template 
+http://www.templatemo.com/preview/templatemo_097_voip 
+-->
+</body>
+</html>

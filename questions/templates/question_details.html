@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+
+
+{% block section_01_left %}
+<h2> {{ question.text|default:'no question selected' }}:</h2>
+	<div class="col-md-4">
+      <h3>{{ question.text }} </h3>
+	  {#  <p><a class="btn btn-default" href="/questions/{{question.id}}" role="button">View details &raquo;</a></p> #}
+        <p> {{ question.a_var }}</p>
+        <p> {{ question.b_var }}</p>
+        <p> {{ question.c_var }}</p>
+        <p> {{ question.d_var }}</p>
+	  </div>
+
+
+{% endblock %}
+
