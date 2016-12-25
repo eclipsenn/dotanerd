@@ -57,7 +57,7 @@ INSTALLED_APPS = (
     'django.contrib.staticfiles',
     'django.contrib.sites',
     'questions',
-    'loginza',
+    # 'loginza',
 )
 
 SITE_ID = 1

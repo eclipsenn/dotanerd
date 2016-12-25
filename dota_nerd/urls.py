@@ -15,7 +15,7 @@ urlpatterns = patterns('',
     url(r'^dotanerd/$', questions.views.ask_question_view, name='questions-ask'),
     url(r'^users/', include('users.urls')),
     url(r'^admin/', include(admin.site.urls)),
-    url(r'^loginza/', include('loginza.urls')),
+    #url(r'^loginza/', include('loginza.urls')),
 
 )
 
