@@ -1,6 +1,6 @@
 __author__ = 'eclipse'
 from django import forms
-from models import Question
+from questions.models import Question
 
 
 class AnswerForm(forms.ModelForm):

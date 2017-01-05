@@ -9,7 +9,7 @@ from django.http import HttpResponse, HttpResponseRedirect
 from django.template import RequestContext, loader
 from django.http import Http404, HttpResponseForbidden
 from django.shortcuts import get_object_or_404, render, render_to_response
-from forms import *
+from questions.forms import *
 from random import random
 # from users.views import loginza_login_required
 

@@ -8,7 +8,7 @@ from django.core.urlresolvers import reverse
 from django.template import loader
 from django.template.context import RequestContext
 #
-from forms import CompleteReg
+from users.forms import CompleteReg
 from django.contrib.auth.views import login, logout as system_logout
 # from loginza import signals, models
 # from loginza.templatetags.loginza_widget import _return_path
