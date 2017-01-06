@@ -24,20 +24,10 @@ SECRET_KEY = '*i(0qw(3*h4$y1tfl4&dlcc1_36@eq=i)7z-^p7d#^x=6p19yq'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-TEMPLATE_DEBUG = True
 
 AUTHENTICATION_BACKENDS = (
     'django.contrib.auth.backends.ModelBackend',
 )
-
-
-TEMPLATE_DIRS = (
-    # Put strings here, like "/home/html/django_templates" or "C:/www/django/templates".
-    # Always use forward slashes, even on Windows.
-    # Don't forget to use absolute paths, not relative paths.
-
-)
-
 
 TEMPLATES = [
     {
@@ -59,6 +49,7 @@ TEMPLATES = [
                 'django.template.context_processors.tz',
                 'django.contrib.messages.context_processors.messages',
             ],
+            'debug': True,
         },
     },
 ]
@@ -144,3 +135,8 @@ STATICFILES_DIRS = (
 LOGIN_REDIRECT_URL = 'profile'
 
 LOGIN_URL = 'login'
+
+try:
+    from .local_settings import *
+except ImportError:
+    pass

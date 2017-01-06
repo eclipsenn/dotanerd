@@ -1,11 +1,14 @@
 from django.views.generic import TemplateView
 from django.conf.urls import patterns, url, include
+from django.contrib.auth import urls as django_auth_urls
+
+from users import views as users_views
 
 
-urlpatterns = patterns('',
-    url(r'^login/$', 'users.views.login', name='login'),
-    url(r'^logout/$', 'users.views.logout', name='logout'),
-    url(r'^register/$', 'users.views.register', name='register'),
+urlpatterns = [
+    url(r'^login/$', users_views.login, name='login'),
+    url(r'^logout/$', users_views.logout, name='logout'),
+    url(r'^register/$', users_views.register, name='register'),
     url(r'^profile/$', TemplateView.as_view(template_name='profile.html'), name='profile'),
-    url('^', include('django.contrib.auth.urls')),
-)
+    url('^', include(django_auth_urls)),
+]

@@ -5,7 +5,7 @@ from django.contrib.auth.views import login as default_login, logout as default_
 from django.contrib.auth.forms import UserCreationForm
 from django.http.response import HttpResponseRedirect
 from django.shortcuts import render_to_response
-from django.core.context_processors import csrf
+from django.template.context_processors import csrf
 
 from questions.models import Profile
 
