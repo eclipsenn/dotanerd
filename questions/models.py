@@ -26,7 +26,7 @@ class Question(models.Model):
     total_incorrect = models.FloatField(default=0)
     appear_counter = models.IntegerField(default=0)
     author = models.ForeignKey(User, default=1)
-    tag = models.ManyToManyField(Tag, blank=True, null=True)
+    tag = models.ManyToManyField(Tag, blank=True)
 
     def __unicode__(self):
         return '\n\t'.join([
