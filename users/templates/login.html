@@ -14,9 +14,8 @@
     <h1>Профиль : </h1>
   <img src="{%static 'images/templatemo_image_01.jpg' %}" alt="image"/>
     {% else  %}
-    <h1>Ты кто?</h1>
+    <h1>Log in</h1>
     <img src="{%static 'images/question3.jpg' %}" alt="image"/>
-    <p>Авторизуйся, используя аккаунт в социальной сети.</p>
     <p></p>
     {% if form.errors %}
     <p>Your username and password didn't match. Please try again.</p>
@@ -38,6 +37,19 @@
     <input type="submit" value="login" />
     <input type="hidden" name="next" value="{{ next }}" />
     </form>
+    {% endif %}
+
+</div>
+{% endblock %}
+
+
+{% block section_01_right %}
+<div class="section_01_right">
+    {% if user.is_authenticated %}
+        <h1>blablabla: </h1>
+    {% else  %}
+    <h1>Sign up</h1>
+        <p>Click here to <a class="btn btn-default" href={% url 'register'%} role="button"> register</a>.</p>
     {% endif %}
 
 </div>

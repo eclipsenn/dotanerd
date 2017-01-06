@@ -35,7 +35,7 @@ class QuestionDetails(DetailView):
     template_name = 'question_details.html'
 
 
-@login_required(login_url='/users/login')
+@login_required()
 def ask_question_view(request, pk=None):
     user_answers = Answer.objects.filter(answered_user=request.user)
     questions_to_exclude = [user_answer.asked_question for user_answer in user_answers]

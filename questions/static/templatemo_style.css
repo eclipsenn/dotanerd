@@ -131,7 +131,15 @@ img {
 	color: #c6ca1d;
 	padding: 0 0 5px 30px;
 	margin: 0 0 5px 0;
-	font-family:"Palatino Linotype", "Book Antiqua", Palatino, serif;	
+	font-family:"Palatino Linotype", "Book Antiqua", Palatino, serif;
+}
+
+#templatemo_content h3_pic {
+	font-size: 16px;
+	color: #c6ca1d;
+	padding: 0 0 5px 30px;
+	margin: 0 0 5px 0;
+	font-family:"Palatino Linotype", "Book Antiqua", Palatino, serif;
 	background: url(images/templatemo_list_icon.jpg) top left no-repeat;
 }
 
@@ -176,6 +184,13 @@ img {
 	float: right;
 	width: 238px;
 }
+
+
+.templatemo_content_section_01 .section_01_center {
+	float: left;
+	width: 738px;
+}
+
 
 .section_01_left p{
 	padding-bottom: 10px;

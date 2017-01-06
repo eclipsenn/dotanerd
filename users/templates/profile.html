@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+{% block login %}
+    {% if user.is_authenticated %}
+        <li><a href="/login" rel='tablogout'> Profile </a></li>
+    {% else %}
+        <li><a href="/login"  rel='tablogin' class="selected">Log in</a></li>
+    {% endif %}
+{% endblock %}
+
+{% block section_01_left %}
+<div class="section_01_left">
+    {% if user.is_authenticated %}
+    <h1>Profile: </h1>
+  <img src="{%static 'images/templatemo_image_01.jpg' %}" alt="image"/>
+            <h3> username: {{  user.username}} </h3>
+            <h3> email: {{  user.email}} </h3>
+            <h3> questions answered: {{  user.profile.questions_answered}} </h3>
+            <h3> rating: {{  user.profile.rating}} </h3>
+
+    {% else  %}
+        <h1>SOME UNXEPECTED ERROR IS HAPPENING - PROFILE FOR UNAUTHENTICATED USER IS SHOWN</h1>
+        <img src="{%static 'images/question3.jpg' %}" alt="image"/>
+    {% endif %}
+
+</div>
+{% endblock %}
+
+
+{% block section_01_right %}
+<div class="section_01_right">
+    {% if user.is_authenticated %}
+    <h1>Settings: </h1>
+{#        <p> change password <a class="btn btn-default" href={% url 'asdasd'%} role="button"> </a></p>#}
+        <p><a class="btn btn-default" href={% url 'logout'%} role="button"> log out</a> </p>
+
+    {% else  %}
+        <h1>SOME UNXEPECTED ERROR IS HAPPENING - PROFILE FOR UNAUTHENTICATED USER IS SHOWN</h1>
+        <img src="{%static 'images/question3.jpg' %}" alt="image"/>
+    {% endif %}
+
+</div>
+{% endblock %}

@@ -28,7 +28,6 @@ TEMPLATE_DEBUG = True
 
 AUTHENTICATION_BACKENDS = (
     'django.contrib.auth.backends.ModelBackend',
-    # 'loginza.authentication.LoginzaBackend',
 )
 
 
@@ -36,8 +35,33 @@ TEMPLATE_DIRS = (
     # Put strings here, like "/home/html/django_templates" or "C:/www/django/templates".
     # Always use forward slashes, even on Windows.
     # Don't forget to use absolute paths, not relative paths.
-    'dota_nerd/templates',
+
 )
+
+
+TEMPLATES = [
+    {
+        'BACKEND': 'django.template.backends.django.DjangoTemplates',
+        'DIRS': [
+            'dota_nerd/templates',
+            'users/templates',
+        ],
+        'APP_DIRS': True,
+        'OPTIONS': {
+            'context_processors': [
+                # Insert your TEMPLATE_CONTEXT_PROCESSORS here or use this
+                # list if you haven't customized them:
+                'django.contrib.auth.context_processors.auth',
+                'django.template.context_processors.debug',
+                'django.template.context_processors.i18n',
+                'django.template.context_processors.media',
+                'django.template.context_processors.static',
+                'django.template.context_processors.tz',
+                'django.contrib.messages.context_processors.messages',
+            ],
+        },
+    },
+]
 
 ALLOWED_HOSTS = []
 
@@ -53,7 +77,7 @@ INSTALLED_APPS = (
     'django.contrib.staticfiles',
     'django.contrib.sites',
     'questions',
-    # 'loginza',
+    'users',
     'oauth2_provider',
     'corsheaders',
 )
@@ -116,3 +140,7 @@ STATICFILES_DIRS = (
         'static',
     ),
 )
+
+LOGIN_REDIRECT_URL = 'profile'
+
+LOGIN_URL = 'login'
