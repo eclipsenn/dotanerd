@@ -1,5 +1,6 @@
 Django==1.9.12
 django-oauth-toolkit
 django-cors-middleware
+django-registration
 pillow
 psycopg2

@@ -134,7 +134,12 @@ STATICFILES_DIRS = (
 
 LOGIN_REDIRECT_URL = 'profile'
 
+# for login_required decorator
 LOGIN_URL = 'login'
+
+# for HMAC 2-phase authorisation
+
+ACCOUNT_ACTIVATION_DAYS = 7
 
 try:
     from .local_settings import *

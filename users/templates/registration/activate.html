@@ -1,0 +1,20 @@
+{% extends "profile.html" %}
+{% load staticfiles %}
+
+
+
+{% block section_01_left %}
+<div class="section_01_left">
+        <p>Oops, something went wrong. Either your activation code is expired or your account is already activated.</p>
+</div>
+{% endblock %}
+
+
+
+{% block section_01_right %}
+<div class="section_01_right">
+<h1> Log in</h1>
+    <p> If you remembered your account credentials, try to login <a href="{% url "login" %}">here</a></p>
+    <p> Or register <a href="{% url "registration_register" %}">here</a></p>
+</div>
+{% endblock %}

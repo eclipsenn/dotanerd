@@ -1,0 +1,10 @@
+Dear {{user.username}},
+
+to complete the registration on Dotanerd please activate your account using the link below:
+
+http://{{site}}/users/2phase/activate/{{activation_key}}
+The link is available next {{expiration_days}} days.
+
+Best regards,
+
+Dotanerd admin

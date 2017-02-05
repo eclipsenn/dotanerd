@@ -1,0 +1,20 @@
+{% extends "profile.html" %}
+{% load staticfiles %}
+
+
+
+{% block section_01_left %}
+<div class="section_01_left">
+        <p>You've been successfully registered on Dotanerd! We sent an activation code for you, please check your email and follow the instructions.</p>
+</div>
+{% endblock %}
+
+
+
+{% block section_01_right %}
+<div class="section_01_right">
+<h1> Log in</h1>
+    <p> If you remembered your account credentials, try to login <a href="{% url "login" %}">here</a></p>
+    <p> Or register <a href="{% url "registration_register" %}">here</a></p>
+</div>
+{% endblock %}

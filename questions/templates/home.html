@@ -1,5 +1,28 @@
 {% extends "base.html" %}
+{% load staticfiles %}
 
 {% block home %}
   <li><a href="/" class="selected" >Home</a></li>
+{% endblock %}
+
+
+{% block section_01_left %}
+<div class="section_01_left">
+    {% if user.is_authenticated %}
+            <h3> Welcome to Dotanerd, {{  user.username}}!  You can play now! </h3>
+
+
+    {% else  %}
+        	<div class="section_01_left">
+                <h1>Do you think you know all about Dota?</h1>
+          	  <img src="{%static 'images/templatemo_image_01.jpg' %}" alt="image"/>
+
+              <p>{% block autorized %}1. <a href="{% url "login" %}"> Sign in </a> or <a href="{% url "registration_register" %}"> Sign up </a> {% endblock %}</p>
+
+              <p>2. <a href="{% url "questions-ask" %}">Start</a> answering Dota questions </p>
+			  <p>3. Do your best and prove you're the biggest nerd here!</p>
+			</div>
+    {% endif %}
+
+</div>
 {% endblock %}

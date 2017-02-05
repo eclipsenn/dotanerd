@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+
+{% block section_01_left %}
+<div class="section_01_left">
+    <p>Congratulations! Your account has been activated.
+        Now you can <a href="{% url "login" %}"> log in</a> and set up your profile.</p>
+
+</div>
+{% endblock %}

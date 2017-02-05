@@ -1,39 +1,27 @@
 # -*- coding: utf-8 -*-
 from django import forms
+from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth import get_user_model
+from questions.models import Profile
 User = get_user_model()
 
 
-class CompleteReg(forms.Form):
+class DotanerdUserCreationForm(UserCreationForm):
+    email = forms.EmailField(required=True)
 
-    username = forms.RegexField(label=u'Имя пользователя', max_length=30, min_length=4,
-                                required=True, regex=r'^[\w.@+-]+$')
-    email = forms.EmailField(label=u'Email', required=True)
+    def __init__(self, *args, **kwargs):
+        super(DotanerdUserCreationForm, self).__init__(*args, **kwargs)
 
-    def __init__(self, user_id, *args, **kwargs):
-        super(CompleteReg, self).__init__(*args, **kwargs)
-        self.user_id = user_id
+        for fieldname in ['username', 'password1', 'password2']:
+            self.fields[fieldname].help_text = None
 
-    def clean_username(self):
-        if self.cleaned_data['username']:
-            try:
-                u = User.objects.exclude(id=self.user_id).get(username=self.cleaned_data['username'])
-            # if username is unique - it's ok
-            except User.DoesNotExist:
-                u = None
 
-            if u is not None:
-                raise forms.ValidationError(u'Пользователь с таким именем уже зарегистрирован')
-        return self.cleaned_data['username']
+class ProfileForm(forms.ModelForm):
 
-    def clean_email(self):
-        if self.cleaned_data['email']:
-            try:
-                u = User.objects.exclude(id=self.user_id).get(email=self.cleaned_data['email'])
-            # if email is unique - it's ok
-            except User.DoesNotExist:
-                u = None
+    class Meta:
+        model = Profile
+        fields = ['first_name', 'last_name', 'years_in_dota', 'photo']
 
-            if u is not None:
-                raise forms.ValidationError(u'Пользователь с этим адресом уже зарегистрирован')
-        return self.cleaned_data['email']
+    def __init__(self, user, *args, **kwargs):
+        self.user = user
+        super(ProfileForm, self).__init__(*args, **kwargs)

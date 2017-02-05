@@ -1,6 +1,6 @@
 from django.contrib.auth.models import User
 from django.db import models
-
+from django.forms import extras
 
 class Tag(models.Model):
     text = models.CharField(max_length=255,)
@@ -49,10 +49,16 @@ class Answer(models.Model):
 
 class Profile(models.Model):
     user = models.OneToOneField(User)
+    first_name = models.CharField(max_length=50, blank=True)
+    last_name = models.CharField(max_length=50, blank=True)
+    years_in_dota = models.PositiveIntegerField(default=0)
     rating = models.FloatField(default=0)
     photo = models.ImageField(upload_to='profile_photos', blank=True)
     questions_answered = models.IntegerField(default=0)
     questions_proposed = models.IntegerField(default=0)
 
     def __unicode__(self):
+        return self.user.username
+
+    def __str__(self):
         return self.user.username
