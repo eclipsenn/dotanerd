@@ -1,5 +1,7 @@
 from django.contrib.auth import authenticate as auth_authenticate, login as auth_login
+from django.core.urlresolvers import reverse
 from django.http.response import HttpResponseRedirect
+from django.shortcuts import redirect
 from django.shortcuts import render_to_response
 from django.template.context_processors import csrf
 from django.template.response import TemplateResponse
@@ -60,10 +62,13 @@ def profile(request):
 
 def update_profile(request, template_name):
     if request.method == "POST":
-        form = ProfileForm(request.POST)
+        form = ProfileForm(request.user, request.POST, request.FILES, instance=request.user.profile)
         if form.is_valid():
+            #instance = form.save(commit=False)
+            #instance.user = request.user
+            #instance.save()
             form.save()
-            return HttpResponseRedirect('profile.html')
+            return redirect(reverse('profile'))
     else:
         form = ProfileForm(user=request.user)
     context = {

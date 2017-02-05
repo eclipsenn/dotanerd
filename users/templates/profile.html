@@ -11,7 +11,7 @@
 {% block section_01_left %}
 <div class="section_01_left">
     {% if user.is_authenticated %}
-  <img src="{%static 'images/templatemo_image_01.jpg' %}" alt="image"/>
+  <img src="{{ user.profile.photo  }}" alt="image"/>
             <h3> email: {{user.email}} </h3>
             <h3> questions answered: {{  user.profile.questions_answered}} </h3>
             <h3> rating: {{  user.profile.rating}} </h3>
