@@ -1,3 +1,5 @@
+import os
+
 from django.contrib.auth import authenticate as auth_authenticate, login as auth_login
 from django.core.urlresolvers import reverse
 from django.http.response import HttpResponseRedirect
@@ -5,8 +7,9 @@ from django.shortcuts import redirect
 from django.shortcuts import render_to_response
 from django.template.context_processors import csrf
 from django.template.response import TemplateResponse
+from django.core.files.storage import default_storage
+from django.conf import settings
 from registration.backends.hmac.views import ActivationView
-
 from users.forms import DotanerdUserCreationForm, ProfileForm
 from questions.models import Profile
 
@@ -64,9 +67,18 @@ def update_profile(request, template_name):
     if request.method == "POST":
         form = ProfileForm(request.user, request.POST, request.FILES, instance=request.user.profile)
         if form.is_valid():
-            #instance = form.save(commit=False)
-            #instance.user = request.user
-            #instance.save()
+            filename = request.user.username + '_photo.jpg'  # received file name
+            image = form.files.get('photo')
+            if image:
+                absfilepath = os.path.join(settings.PHOTO_ROOT, filename)
+                with default_storage.open(absfilepath, 'wb+') as destination:
+                    for chunk in image.chunks():
+                        destination.write(chunk)
+                filepath = os.path.join(settings.MEDIA_URL + 'profile_photos', filename)
+            else:
+                filepath = '/static/images/question.jpg'
+
+            form.instance.photo_path = filepath
             form.save()
             return redirect(reverse('profile'))
     else:

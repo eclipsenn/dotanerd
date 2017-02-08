@@ -3,4 +3,5 @@
 __pycache__/
 *.pyc
 dota_nerd/local_settings.py
-profile_photos
+dota_nerd/media
+*.db

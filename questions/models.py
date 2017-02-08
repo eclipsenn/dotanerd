@@ -53,7 +53,8 @@ class Profile(models.Model):
     last_name = models.CharField(max_length=50, blank=True)
     years_in_dota = models.PositiveIntegerField(default=0)
     rating = models.FloatField(default=0)
-    photo = models.ImageField(upload_to='profile_photos', blank=True)
+    photo_url = models.URLField(null=True, blank=True)
+    photo_path = models.FilePathField(null=True, blank=True)
     questions_answered = models.IntegerField(default=0)
     questions_proposed = models.IntegerField(default=0)
 

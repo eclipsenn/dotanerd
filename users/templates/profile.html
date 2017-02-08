@@ -4,14 +4,14 @@
     {% if user.is_authenticated %}
         <li><a href="{% url "profile" %}" rel='tablogout'> {{ user.username }} </a></li>
     {% else %}
-        <li><a href="/login"  rel='tablogin' class="selected">Log in</a></li>
+        <li><a href="{% url "login" %}"  rel='tablogin' class="selected">Log in</a></li>
     {% endif %}
 {% endblock %}
 
 {% block section_01_left %}
 <div class="section_01_left">
     {% if user.is_authenticated %}
-  <img src="{{ user.profile.photo  }}" alt="image"/>
+  <img src="{{user.profile.photo_path}}" alt="image"/>
             <h3> email: {{user.email}} </h3>
             <h3> questions answered: {{  user.profile.questions_answered}} </h3>
             <h3> rating: {{  user.profile.rating}} </h3>
