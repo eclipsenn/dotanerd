@@ -14,7 +14,7 @@ urlpatterns = [
     url(r'^dotanerd/$', questions.views.ask_question_view, name='questions-ask'),
     url(r'^users/', include('users.urls')),
     url(r'^admin/', include(admin.site.urls)),
-    url(r'^o/', include('oauth2_provider.urls', namespace='oauth2_provider')),
+    # url(r'^o/', include('oauth2_provider.urls', namespace='oauth2_provider')),
 ]
 
 from django.conf.urls.static import static

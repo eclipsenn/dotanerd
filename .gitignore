@@ -3,5 +3,5 @@
 __pycache__/
 *.pyc
 dota_nerd/local_settings.py
-dota_nerd/media
+files
 *.db
