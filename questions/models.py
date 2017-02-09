@@ -55,7 +55,7 @@ class Profile(models.Model):
     years_in_dota = models.PositiveIntegerField(default=0)
     rating = models.FloatField(default=0)
     photo_url = models.URLField(null=True, blank=True)
-    photo = models.ImageField(upload_to=settings.PHOTO_ROOT, default='/static/images/question.jpg')
+    photo = models.ImageField(upload_to=settings.PHOTO_DIR, default='{}/question.jpg'.format(settings.PHOTO_DIR))
     questions_answered = models.IntegerField(default=0)
     questions_proposed = models.IntegerField(default=0)
 
