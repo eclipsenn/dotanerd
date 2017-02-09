@@ -1,6 +1,7 @@
 from django.contrib.auth.models import User
 from django.db import models
-from django.forms import extras
+from django.conf import settings
+
 
 class Tag(models.Model):
     text = models.CharField(max_length=255,)
@@ -54,7 +55,7 @@ class Profile(models.Model):
     years_in_dota = models.PositiveIntegerField(default=0)
     rating = models.FloatField(default=0)
     photo_url = models.URLField(null=True, blank=True)
-    photo_path = models.FilePathField(null=True, blank=True)
+    photo = models.ImageField(upload_to=settings.PHOTO_ROOT, default='/static/images/question.jpg')
     questions_answered = models.IntegerField(default=0)
     questions_proposed = models.IntegerField(default=0)
 

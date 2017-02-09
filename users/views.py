@@ -74,11 +74,9 @@ def update_profile(request, template_name):
                 with default_storage.open(absfilepath, 'wb+') as destination:
                     for chunk in image.chunks():
                         destination.write(chunk)
-                filepath = os.path.join(settings.MEDIA_URL + 'profile_photos', filename)
+                form.instance.photo = os.path.join(settings.MEDIA_URL, settings.PHOTO_DIR, filename)
             else:
-                filepath = '/static/images/question.jpg'
-
-            form.instance.photo_path = filepath
+                form.instance.photo = form.instance.photo.field.get_default()
             form.save()
             return redirect(reverse('profile'))
     else:
