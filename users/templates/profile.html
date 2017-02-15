@@ -11,7 +11,7 @@
 {% block section_01_left %}
 <div class="section_01_left">
     {% if user.is_authenticated %}
-  <img src="{{user.profile.photo.url}}" alt="image"/>
+  <img src="{{user.profile.photo.url}}?{{timestamp}}" alt="image"/>
             <h3> email: {{user.email}} </h3>
             <h3> questions answered: {{  user.profile.questions_answered}} </h3>
             <h3> rating: {{  user.profile.rating}} </h3>
@@ -29,7 +29,7 @@
 <div class="section_01_right">
     {% if user.is_authenticated %}
     <h1>Settings: </h1>
-        <a class="btn btn-default" href='{% url 'update_profile'%}' role="button"> update profile </a><br/>
+        <a class="btn btn-default" href='{% url 'update_profile'%}' role="button"> update photo </a><br/>
         <a class="btn btn-default" href='{% url 'pass_change'%}' role="button"> change password </a>
         <p><a class="btn btn-default" href={% url 'logout'%} role="button"> log out</a> </p>
 

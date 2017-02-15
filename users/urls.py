@@ -33,7 +33,9 @@ urlpatterns = [
     # currently unused as two-phase registration is implemented. Can be activated if needed.
     url(r'^register/$', users_views.register, name='register'),
 
-    url(r'^profile/$', TemplateView.as_view(template_name='profile.html'), name='profile'),
+    url(r'^profile/$', users_views.profile, name='profile'),
+    url(r'^cropping/$', TemplateView.as_view(template_name='cropping.html'), name='cropping'),
+
     url(
         r'^password_change/$',
         django_auth_views.password_change,

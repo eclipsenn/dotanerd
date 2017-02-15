@@ -1,5 +1,6 @@
 import os
 
+from django.contrib.auth.decorators import login_required
 from django.contrib.auth import authenticate as auth_authenticate, login as auth_login
 from django.core.urlresolvers import reverse
 from django.http.response import HttpResponseRedirect
@@ -13,6 +14,10 @@ from registration.backends.hmac.views import ActivationView
 from users.forms import DotanerdUserCreationForm, ProfileForm
 from questions.models import Profile
 
+from time import time
+
+from base64 import b64decode
+from django.core.files.base import ContentFile
 
 class DotanerdActivationView(ActivationView):
     """Two-phase registration custom class. Currntly used ofr registration."""
@@ -58,9 +63,9 @@ def register(request):
 
     return render_to_response('register.html', token)
 
-
+@login_required()
 def profile(request):
-    return render_to_response('profile.html')
+    return render_to_response('profile.html', {'user': request.user, 'timestamp': time() })
 
 
 def update_profile(request, template_name):
@@ -68,7 +73,10 @@ def update_profile(request, template_name):
         form = ProfileForm(request.user, request.POST, request.FILES, instance=request.user.profile)
         if form.is_valid():
             filename = request.user.username + '_photo.jpg'  # received file name
-            image = form.files.get('photo')
+            #image = form.files.get('photo')
+            asd = form.data['uploaded_image'].split(',')[1]
+            image_data = b64decode(asd)
+            image = ContentFile(image_data, 'whatup.png')
             if image:
                 absfilepath = os.path.join(settings.PHOTO_ROOT, filename)
                 with default_storage.open(absfilepath, 'wb+') as destination:
@@ -80,9 +88,14 @@ def update_profile(request, template_name):
             form.save()
             return redirect(reverse('profile'))
     else:
+        return redirect(reverse('cropping'))
         form = ProfileForm(user=request.user)
     context = {
         'form': form,
     }
 
     return TemplateResponse(request, template_name, context)
+
+
+def cropping(request):
+    return  render_to_response('cropping.html')

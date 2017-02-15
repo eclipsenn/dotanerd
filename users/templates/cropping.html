@@ -1,0 +1,53 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+
+{% block scripts %}
+{#    <link rel="stylesheet" href="{% static 'bootstrap/css/bootstrap.min.css' %}">#}
+    <link rel="stylesheet" href="{% static 'croppie/croppie.css' %}" />
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+    <script src={% static 'croppie/croppie.min.js' %}></script>
+    <script src={% static 'demo.js' %}></script>
+    <script>
+       $(document).ready(function() {
+           Demo.init()
+       });
+    </script>
+{% endblock %}
+
+{% block login %}
+    {% if user.is_authenticated %}
+        <li><a href="{% url "profile" %}" rel='tablogout'> {{ user.username }} </a></li>
+    {% else %}
+        <li><a href="{% url "login" %}"  rel='tablogin' class="selected">Log in</a></li>
+    {% endif %}
+{% endblock %}
+
+
+{% block section_01_left %}
+<div class="section_01_left">
+    {% if user.is_authenticated %}
+        <h1>Upload a file to start cropping</h1>
+
+        <div class="actions">
+            <a class="btn file-btn">
+                <input type="file" id="upload" value="Choose a file" accept="image/*" />
+            </a>
+            <button type="button" class="btn btn-success" id="upload-result">Submit</button>
+        </div>
+
+
+            <div class="upload-demo-wrap">
+                <div id="upload-demo"></div>
+            </div>
+
+        <form id="crp_form"  action="{% url "update_profile" %}"  enctype="multipart/form-data" method="post" hidden>
+            {% csrf_token %}
+        </form>
+
+    {% else  %}
+        <h1>SOME UNXEPECTED ERROR IS HAPPENING - PROFILE FOR UNAUTHENTICATED USER IS SHOWN</h1>
+        <img src="{%static 'images/question3.jpg' %}" alt="image"/>
+    {% endif %}
+
+</div>
+{% endblock %}
