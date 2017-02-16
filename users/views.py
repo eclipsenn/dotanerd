@@ -1,23 +1,21 @@
 import os
+from time import time
+from base64 import b64decode
 
+from registration.backends.hmac.views import ActivationView
+
+from django.conf import settings
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import authenticate as auth_authenticate, login as auth_login
+from django.core.files.base import ContentFile
+from django.core.files.storage import default_storage
 from django.core.urlresolvers import reverse
 from django.http.response import HttpResponseRedirect
-from django.shortcuts import redirect
-from django.shortcuts import render_to_response
+from django.shortcuts import redirect, render, render_to_response
 from django.template.context_processors import csrf
-from django.template.response import TemplateResponse
-from django.core.files.storage import default_storage
-from django.conf import settings
-from registration.backends.hmac.views import ActivationView
-from users.forms import DotanerdUserCreationForm, ProfileForm
 from questions.models import Profile
+from users.forms import DotanerdUserCreationForm, ProfileForm
 
-from time import time
-
-from base64 import b64decode
-from django.core.files.base import ContentFile
 
 class DotanerdActivationView(ActivationView):
     """Two-phase registration custom class. Currntly used ofr registration."""
@@ -38,8 +36,9 @@ class DotanerdActivationView(ActivationView):
                 return user
         return False
 
+
 def register(request):
-    "Use for simple registration only."
+    """Use for simple registration only."""
     if request.method == 'POST':
         form = DotanerdUserCreationForm(request.POST)
         if form.is_valid():
@@ -63,19 +62,18 @@ def register(request):
 
     return render_to_response('register.html', token)
 
+
 @login_required()
 def profile(request):
-    return render_to_response('profile.html', {'user': request.user, 'timestamp': time() })
+    return render_to_response('profile.html', {'user': request.user, 'timestamp': time()})
 
 
-def update_profile(request, template_name):
+def update_photo(request):
     if request.method == "POST":
         form = ProfileForm(request.user, request.POST, request.FILES, instance=request.user.profile)
         if form.is_valid():
             filename = request.user.username + '_photo.jpg'  # received file name
-            #image = form.files.get('photo')
-            asd = form.data['uploaded_image'].split(',')[1]
-            image_data = b64decode(asd)
+            image_data = b64decode(form.data['uploaded_image'].split(',')[1])
             image = ContentFile(image_data, 'whatup.png')
             if image:
                 absfilepath = os.path.join(settings.PHOTO_ROOT, filename)
@@ -89,13 +87,7 @@ def update_profile(request, template_name):
             return redirect(reverse('profile'))
     else:
         return redirect(reverse('cropping'))
-        form = ProfileForm(user=request.user)
-    context = {
-        'form': form,
-    }
-
-    return TemplateResponse(request, template_name, context)
 
 
 def cropping(request):
-    return  render_to_response('cropping.html')
+    return render(request, 'cropping.html')

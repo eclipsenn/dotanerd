@@ -29,7 +29,7 @@
 <div class="section_01_right">
     {% if user.is_authenticated %}
     <h1>Settings: </h1>
-        <a class="btn btn-default" href='{% url 'update_profile'%}' role="button"> update photo </a><br/>
+        <a class="btn btn-default" href='{% url 'update_photo'%}' role="button"> update photo </a><br/>
         <a class="btn btn-default" href='{% url 'pass_change'%}' role="button"> change password </a>
         <p><a class="btn btn-default" href={% url 'logout'%} role="button"> log out</a> </p>
 

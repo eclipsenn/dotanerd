@@ -46,9 +46,8 @@ urlpatterns = [
         name='pass_change'
     ),
     url(
-        r'^update_profile/$', users_views.update_profile,
-        {'template_name': 'update_profile.html'},
-        name='update_profile'
+        r'^update_photo/$', users_views.update_photo,
+        name='update_photo'
     ),
     url(
         r'^password_change_done/$',
