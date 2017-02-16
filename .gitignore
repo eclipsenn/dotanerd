@@ -5,3 +5,5 @@ __pycache__/
 dota_nerd/local_settings.py
 files
 *.db
+files/media/dn_nginx.conf
+files/media/uwsgi.ini
