@@ -4,3 +4,4 @@ django-cors-middleware
 django-registration
 pillow
 psycopg2
+uwsgi
