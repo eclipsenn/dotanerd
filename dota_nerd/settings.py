@@ -12,7 +12,7 @@ https://docs.djangoproject.com/en/1.7/ref/settings/
 import os
 import os.path
 
-BASE_DIR = os.path.dirname(os.path.dirname(__file__))
+BASE_DIR = os.path.abspath(os.path.join(os.path.dirname(__file__),os.pardir))
 #os.environ['DJANGO_SETTINGS_MODULE'] = 'dota_nerd.settings'
 
 # Quick-start development settings - unsuitable for production
@@ -127,10 +127,17 @@ STATICFILES_DIRS = (
     # Always use forward slashes, even on Windows.
     # Don't forget to use absolute paths, not relative paths.
     os.path.join(
-        os.path.dirname(__file__),
-        'static',
+        os.path.join(BASE_DIR, 'static'),
     ),
 )
+
+STATIC_ROOT = os.path.join(BASE_DIR, 'files', 'static')
+
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'files', 'media')
+
+PHOTO_DIR = 'profile_photos'
+PHOTO_ROOT = os.path.join(MEDIA_ROOT, PHOTO_DIR)
 
 LOGIN_REDIRECT_URL = 'profile'
 
