@@ -2,6 +2,7 @@ Django==1.9.12
 django-oauth-toolkit
 django-cors-middleware
 django-registration
+gunicorn==19.6.0
 pillow
 psycopg2
 uwsgi
