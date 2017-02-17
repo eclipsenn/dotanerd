@@ -54,7 +54,7 @@ TEMPLATES = [
     },
 ]
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['dotanerd.herokuapp.com']
 
 
 # Application definition
