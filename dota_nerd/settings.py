@@ -148,6 +148,12 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'files', 'media')
 PHOTO_DIR = 'profile_photos'
 PHOTO_ROOT = os.path.join(MEDIA_ROOT, PHOTO_DIR)
 
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 587
+EMAIL_HOST_USER = 'mail.dotanerd@gmail.com'
+EMAIL_HOST_PASSWORD = 'heroku_dn1'
+EMAIL_USE_TLS = True
+
 LOGIN_REDIRECT_URL = 'profile'
 
 # for login_required decorator
